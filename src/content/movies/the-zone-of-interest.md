@@ -1,7 +1,7 @@
 ---
 title: "The Zone of Interest"
 date: 2026-03-29
-tags: [film, jonathan-glazer, holocaust, 2023]
+tags: [film, jonathan-glazer, holocaust, "2023"]
 rating: 5
 ---
 

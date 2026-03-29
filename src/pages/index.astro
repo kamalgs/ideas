@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import { CATEGORIES } from '../lib/categories';
+import type { Category } from '../lib/categories';
+import '../styles/global.css';
+
+type Entry = {
+  slug: string;
+  data: { title: string; date: Date; tags: string[]; rating?: number };
+  category: Category;
+};
+
+const all: Entry[] = [];
+
+for (const category of CATEGORIES) {
+  const entries = await getCollection(category);
+  for (const entry of entries) {
+    all.push({ slug: entry.slug, data: entry.data, category });
+  }
+}
+
+const recent = all
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 10);
+---
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ideas</title>
+</head>
+<body>
+  <header>
+    <h1>Ideas</h1>
+    <nav>
+      {CATEGORIES.map(cat => <a href={`/${cat}`}>{cat}</a>)}
+    </nav>
+  </header>
+  <main>
+    <ul class="entry-list">
+      {recent.map(entry => (
+        <li>
+          <span class="category-badge">{entry.category}</span>
+          <a href={`/${entry.category}/${entry.slug}`}>{entry.data.title}</a>
+          <time datetime={entry.data.date.toISOString()}>
+            {entry.data.date.toLocaleDateString('en-GB', {
+              year: 'numeric', month: 'short', day: 'numeric'
+            })}
+          </time>
+        </li>
+      ))}
+    </ul>
+  </main>
+</body>
+</html>
