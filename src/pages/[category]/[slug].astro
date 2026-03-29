@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import { CATEGORIES } from '../../lib/categories';
+import type { Category } from '../../lib/categories';
+import Post from '../../layouts/Post.astro';
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const category of CATEGORIES) {
+    const entries = await getCollection(category);
+    for (const entry of entries) {
+      paths.push({
+        params: { category, slug: entry.slug },
+        props: { entry, category },
+      });
+    }
+  }
+  return paths;
+}
+
+const { entry, category } = Astro.props as {
+  entry: Awaited<ReturnType<typeof getCollection<Category>>>[number];
+  category: Category;
+};
+
+const { Content } = await entry.render();
+---
+<Post
+  title={entry.data.title}
+  date={entry.data.date}
+  tags={entry.data.tags}
+  rating={entry.data.rating}
+  category={category}
+>
+  <Content />
+</Post>
