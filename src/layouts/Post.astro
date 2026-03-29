@@ -1,0 +1,59 @@
+---
+import type { Category } from '../lib/categories';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  date: Date;
+  tags: string[];
+  rating?: number;
+  category: Category;
+}
+
+const { title, date, tags, rating, category } = Astro.props;
+
+const stars = rating ? '★'.repeat(rating) + '☆'.repeat(5 - rating) : null;
+const dateStr = date.toLocaleDateString('en-GB', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title} — Ideas</title>
+</head>
+<body>
+  <header>
+    <h1><a href="/">Ideas</a></h1>
+    <nav>
+      <a href="/books">books</a>
+      <a href="/movies">movies</a>
+      <a href="/thoughts">thoughts</a>
+    </nav>
+  </header>
+  <main>
+    <a class="back-link" href={`/${category}`}>← {category}</a>
+    <article>
+      <div class="post-header">
+        <h1>{title}</h1>
+        <div class="post-meta">
+          <span class="category-badge">{category}</span>
+          <time datetime={date.toISOString()}>{dateStr}</time>
+          {stars && <span class="rating">{stars}</span>}
+          {tags.length > 0 && (
+            <div class="tags">
+              {tags.map(tag => <span class="tag">{tag}</span>)}
+            </div>
+          )}
+        </div>
+      </div>
+      <div class="prose">
+        <slot />
+      </div>
+    </article>
+  </main>
+</body>
+</html>
