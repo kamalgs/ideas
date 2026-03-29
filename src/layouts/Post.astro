@@ -12,7 +12,7 @@ interface Props {
 
 const { title, date, tags, rating, category } = Astro.props;
 
-const stars = rating ? '★'.repeat(rating) + '☆'.repeat(5 - rating) : null;
+const stars = rating !== undefined ? '★'.repeat(rating) + '☆'.repeat(5 - rating) : null;
 const dateStr = date.toLocaleDateString('en-GB', {
   year: 'numeric',
   month: 'long',
@@ -27,7 +27,7 @@ const dateStr = date.toLocaleDateString('en-GB', {
 </head>
 <body>
   <header>
-    <h1><a href="/">Ideas</a></h1>
+    <p class="site-title"><a href="/">Ideas</a></p>
     <nav>
       <a href="/books">books</a>
       <a href="/movies">movies</a>

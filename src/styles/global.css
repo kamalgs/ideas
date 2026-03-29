@@ -10,6 +10,7 @@
   --color-bg: #fff;
   --color-badge-bg: #f0f4ff;
   --color-badge-text: #2563eb;
+  --color-border: #eee;
 }
 
 body {
@@ -39,12 +40,13 @@ header {
   gap: 2rem;
 }
 
-header h1 {
+header .site-title {
   margin: 0;
   font-size: 1.5rem;
+  font-weight: bold;
 }
 
-header h1 a {
+header .site-title a {
   color: var(--color-text);
 }
 
@@ -81,7 +83,7 @@ main {
   align-items: baseline;
   gap: 0.75rem;
   padding: 0.75rem 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .entry-list li a {
@@ -145,7 +147,6 @@ time {
 }
 
 .prose {
-  font-size: 1.125rem;
   line-height: 1.8;
 }
 
@@ -153,7 +154,7 @@ time {
 .prose h3 { font-size: 1.2rem; margin-top: 1.5rem; }
 .prose p  { margin: 1rem 0; }
 .prose blockquote {
-  border-left: 3px solid #ddd;
+  border-left: 3px solid var(--color-border);
   margin: 1.5rem 0;
   padding: 0.25rem 1.25rem;
   color: var(--color-muted);
