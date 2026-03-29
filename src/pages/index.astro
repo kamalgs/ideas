@@ -19,7 +19,7 @@ for (const category of CATEGORIES) {
   }
 }
 
-const recent = all
+const recent = [...all]
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 10);
 ---
