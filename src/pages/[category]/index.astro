@@ -10,7 +10,7 @@ export async function getStaticPaths() {
 
 const category = Astro.params.category as Category;
 const entries = await getCollection(category);
-const sorted = entries.sort(
+const sorted = [...entries].sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
 ---
