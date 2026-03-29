@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import { CATEGORIES } from '../../lib/categories';
+import type { Category } from '../../lib/categories';
+import '../../styles/global.css';
+
+export async function getStaticPaths() {
+  return CATEGORIES.map(category => ({ params: { category } }));
+}
+
+const category = Astro.params.category as Category;
+const entries = await getCollection(category);
+const sorted = entries.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{category} — Ideas</title>
+</head>
+<body>
+  <header>
+    <p class="site-title"><a href="/">Ideas</a></p>
+    <nav>
+      {CATEGORIES.map(cat => <a href={`/${cat}`}>{cat}</a>)}
+    </nav>
+  </header>
+  <main>
+    <h2 style="font-size:1.25rem; margin-bottom:1.5rem; text-transform:capitalize;">{category}</h2>
+    {sorted.length === 0 && <p style="color:#666;">No entries yet.</p>}
+    <ul class="entry-list">
+      {sorted.map(entry => (
+        <li>
+          <a href={`/${category}/${entry.slug}`}>{entry.data.title}</a>
+          <time datetime={entry.data.date.toISOString()}>
+            {entry.data.date.toLocaleDateString('en-GB', {
+              year: 'numeric', month: 'short', day: 'numeric'
+            })}
+          </time>
+        </li>
+      ))}
+    </ul>
+  </main>
+</body>
+</html>
