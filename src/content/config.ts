@@ -13,4 +13,6 @@ export const collections = {
   thoughts: defineCollection({ type: 'content', schema: postSchema }),
   research: defineCollection({ type: 'content', schema: postSchema }),
   product: defineCollection({ type: 'content', schema: postSchema }),
+  investing: defineCollection({ type: 'content', schema: postSchema }),
+  trading: defineCollection({ type: 'content', schema: postSchema }),
 };
