@@ -4,21 +4,91 @@ date: 2026-02-01
 tags: [ai, mobile, inference, hinglish, india, nlp, speculative-decoding, edge-computing]
 ---
 
-The framing: mobile inference isn't primarily about running the full model on device — it's about using a small on-device model to improve the quality of what gets sent to the cloud model.
+Mobile inference isn't primarily about running the full model on device — it's about using a small on-device model to improve the quality of what gets sent to the cloud model.
 
-The input quality problem: Most real-world queries arrive with typos, mixed scripts, transliteration ambiguity (Hinglish typed in Roman script, regional language words spelled phonetically), incomplete sentences, unclear intent. The cloud model receives this and produces a degraded response. The garbage-in problem is underappreciated relative to model capability.
+## The Input Quality Problem
 
-The on-device preprocessing layer:
+Most real-world queries arrive degraded:
 
-- Typo correction before the query leaves the device
-- Transliteration normalization — "mujhe batao" → proper Devanagari, or consistent romanization
-- Query expansion / intent clarification for ambiguous short queries
-- Context injection from local state (previous queries in session, user preferences)
+```mermaid
+flowchart LR
+    U["User intent\n(clear in head)"] -->|typed on mobile| Q["mujhe ye batao\nik achha brker\nkaun sa h??"]
+    Q -->|cloud model receives| R["Degraded response\nbecause query was garbage"]
+    style Q fill:#fee2e2
+    style R fill:#fee2e2
+```
 
-A 1-3B model on device can do all of this well. It doesn't need to answer the question — just clean and enrich the input. The cloud model then operates on a high-quality, unambiguous query.
+The garbage-in problem is underappreciated relative to model capability debates. A GPT-4-class model receiving a malformed query produces a GPT-4-class answer to the wrong question.
 
-The speculative decoding angle: Extend this to the response side. Small on-device model generates a speculative draft response for simple queries. Cloud model verifies or corrects. For queries the small model can handle confidently, no cloud call needed. For complex queries, the draft gives the cloud model a starting point it can accept or reject token by token.
+## The Preprocessing Pipeline
 
-The incremental protocol implication: Rather than a binary on-device vs cloud routing decision, a streaming protocol where the device starts generating incrementally, the cloud monitors confidence, and takes over when complexity exceeds the local model's capability. Seam is invisible to the user — response streams continuously.
+```mermaid
+flowchart TD
+    UQ[Raw User Query\ntypos, Hinglish, ambiguous] --> OD[On-Device 1-3B Model]
 
-India-specific relevance: Hinglish, code-mixed queries, regional language transliteration are exactly where global cloud models fail and where a small, locally fine-tuned preprocessing model adds disproportionate value. The problem is more acute in India than anywhere else.
+    subgraph OD_OPS["On-Device Operations"]
+        TC[Typo correction]
+        TN[Transliteration normalisation]
+        QE[Query expansion\nambiguous intent clarified]
+        CI[Context injection\nsession history + preferences]
+    end
+
+    OD --> TC --> TN --> QE --> CI
+    CI --> CLOUD[Cloud Model\nGPT-4 / Claude / Gemini]
+    CLOUD --> RESP[High-quality response\nto a well-formed query]
+
+    OD -.->|simple queries\nhigh confidence| RESP
+    style UQ fill:#fee2e2
+    style RESP fill:#dcfce7
+```
+
+A 1-3B model on device can do all of this well. It doesn't need to *answer* the question — just clean and enrich the input.
+
+## Speculative Decoding Extension
+
+```mermaid
+sequenceDiagram
+    participant Device as On-Device Model
+    participant Cloud as Cloud Model
+    participant User
+
+    User->>Device: Query
+    Device->>Device: Generate speculative draft response
+    Device->>Cloud: Send cleaned query + draft tokens
+    Cloud->>Cloud: Verify draft token by token
+    alt Draft accepted (simple query)
+        Cloud-->>User: Confirmed response (fast, cheap)
+    else Draft rejected (complex query)
+        Cloud-->>User: Cloud-generated response
+    end
+```
+
+For queries the small model can handle confidently, no cloud call needed. For complex queries, the draft gives the cloud model a starting point — accept or correct token by token.
+
+## The India-Specific Case
+
+India is where this problem is most acute and the solution most valuable:
+
+| Problem | Scale |
+|---|---|
+| Hinglish queries (Roman script Hindi) | ~500M+ users type this way |
+| Code-mixed regional language queries | 22 official languages, infinite combinations |
+| Transliteration ambiguity | "pyaar", "pyar", "piyar" — same word |
+| Low-end device constraints | Median Android RAM: 3-4GB |
+
+Global cloud models are optimised for English. A small on-device model fine-tuned on Indian language patterns adds disproportionate value precisely where global models fail.
+
+## The Incremental Protocol
+
+Rather than binary on-device vs cloud routing — a streaming protocol:
+
+```mermaid
+flowchart LR
+    D[Device starts\ngenerating] --> M{Confidence\nthreshold?}
+    M -->|high| D
+    M -->|dropping| C[Cloud takes over\nseamlessly]
+    C --> R[Response streams\ncontinuously to user]
+    style R fill:#dcfce7
+```
+
+The seam is invisible to the user. Response streams continuously regardless of which model is generating at any moment.

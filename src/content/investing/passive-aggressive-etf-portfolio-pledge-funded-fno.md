@@ -4,16 +4,73 @@ date: 2026-01-01
 tags: [portfolio, etf, sif, options, pledge, wealth-management, india, investing]
 ---
 
-The architecture: A four-layer portfolio where each layer serves a distinct function and the layers interact through the pledge mechanism.
+A four-layer portfolio architecture where each layer serves a distinct function and the layers interact through the pledge mechanism. The name "Passive Aggressive" captures the core contradiction: passive index vehicles with an aggressively tilted asset allocation.
 
-**Layer 1 — Passive Aggressive (₹2.5Cr, 7-ETF):** Aggressive small/mid-cap tilt (30% midcap, 20% smallcap, 15% NASDAQ, 15% largecap, 15% gold/silver, 5% liquid) inside a passive index wrapper. The name captures the contradiction — passive vehicle, aggressive asset allocation. Long-horizon compounding bucket, no drawdown from this.
+## Portfolio Architecture
 
-**Layer 2 — SIF income layer (₹1.1Cr, Altiva + Magnum + qSIF):** Hybrid long-short funds generating 12-15% normalized returns at 12.5% LTCG post 24 months. Significantly more tax-efficient than debt funds. But the key property: pledgeable for margin.
+```mermaid
+graph TD
+    subgraph L1["Layer 1 — Passive Aggressive Core (2.5 Cr)"]
+        E1["30% Midcap ETF"]
+        E2["20% Smallcap ETF"]
+        E3["15% NASDAQ-100 ETF"]
+        E4["15% Nifty 50 ETF"]
+        E5["15% Gold + Silver ETF"]
+        E6["5% Liquid ETF"]
+    end
 
-**Layer 3 — Pledge-funded FNO:** SIF pledged for ~₹88L margin credit. Options strategies (CruiseHarvest) deployed against this. The SIF continues earning 12-15% while simultaneously providing margin collateral. Effective cost of carry on the futures/options position is near-zero — earning on the collateral while the trading runs on top.
+    subgraph L2["Layer 2 — SIF Income Layer (1.1 Cr)"]
+        S1["Altiva SIF"]
+        S2["Magnum SIF"]
+        S3["qSIF"]
+        NOTE["12-15% normalised returns\n12.5% LTCG post 24 months"]
+    end
 
-**Layer 4 — PMS satellite (₹50L):** Tactical exposure, gold timing, product learning.
+    subgraph L3["Layer 3 — Pledge-Funded FNO"]
+        F1["CruiseHarvest Iron Condors\non NIFTY / BANKNIFTY"]
+        MAR["~88L margin credit\nfrom SIF pledge"]
+    end
 
-The non-obvious insight: The SIF-as-collateral structure means you are earning on the corpus twice — the SIF returns plus the options P&L, with the SIF never leaving your account. This is only available to someone with sufficient corpus to hold pledgeable assets above the margin buffer threshold. Retail participants can't access this architecture — they use cash margin which earns nothing and they have no buffer corpus.
+    subgraph L4["Layer 4 — PMS Satellite (50L)"]
+        P1["Tactical PMS\ngold timing + alternatives"]
+    end
 
-The blended cost: 0.56% across ₹3.6Cr total — far below typical wealth management (1.5-2.5%). Achieved by using passive ETFs for the bulk, tactical PMS only for learning and alternatives exposure, and self-managed options trading (zero management fee on the active layer).
+    L2 -->|"pledged for margin\nSIF stays in account"| L3
+    L2 -->|"simultaneously earns\n12-15%"| L2
+
+    style L1 fill:#dbeafe
+    style L2 fill:#dcfce7
+    style L3 fill:#fef9c3
+    style L4 fill:#f3e8ff
+```
+
+## The Non-Obvious Insight: Earning Twice
+
+```mermaid
+flowchart LR
+    SIF["SIF corpus\n1.1 Cr"] -->|"earns 12-15%\nnormally"| R1["SIF returns\n~14-16L/year"]
+    SIF -->|"pledged as\ncollateral"| MAR["88L margin\ncredit"]
+    MAR -->|"options P&L\nfrom CruiseHarvest"| R2["Options income\nadditional"]
+    R1 --> TOTAL["Total return\non same corpus"]
+    R2 --> TOTAL
+    style TOTAL fill:#dcfce7
+```
+
+The SIF never leaves your account. It earns its normal return *and* provides the collateral for options trading simultaneously. Retail participants using cash margin earn nothing on their collateral.
+
+## Cost Comparison
+
+Blended cost of 0.56% across 3.6 Cr total — achieved by using:
+- Passive ETFs for the bulk (0.05–0.30% TER)
+- Self-managed options (zero management fee)
+- Tactical PMS only for the learning and alternatives satellite
+
+## Fee Drag Over 10 Years on 2.5 Cr
+
+| Strategy | Annual fee | 10-year drag |
+|---|---|---|
+| Typical PMS (3.5%) | 8.75L/year | **1.2 Cr+** |
+| Wealth management (2%) | 5L/year | **70L+** |
+| This portfolio (0.56%) | 1.4L/year | **18L** |
+
+The PMS needs to outperform the passive portfolio by 3–4% annually just to break even after fees — and most don't over full market cycles.

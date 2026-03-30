@@ -4,28 +4,88 @@ date: 2025-12-01
 tags: [options, trading, iron-condor, nifty, mcx, commodities, strategy, india]
 ---
 
-The strategy: Iron condors on NIFTY/SENSEX/BANKNIFTY with a dynamic mid-cycle harvesting overlay. Sell IC at defined width, collect premium, harvest the profitable spread early when one side moves safely OTM, leave the other leg to run. When the remaining leg shows partial profit, close the short strike and leave the long wing as a free directional bet with a bracket order waiting for mean reversion. Defined max loss on every trade — the "can't crash" property enables emotional detachment.
+A systematic options income strategy built around iron condors with a dynamic mid-cycle harvesting overlay. The name captures two modes: steady-state income generation (cruise) and opportunistic extraction when one side of the condor moves safely out of the money (harvest).
 
-The name: CruiseHarvest — steady-state base (cruise) plus opportunistic extraction mid-journey (harvest). The gear-shifting metaphor: ICB (Iron Condor Base) for stable markets, adding a higher-gear overlay when IV spikes or events create unusual premium.
+The non-negotiable design principle: **defined max loss on every trade**. This is the property that makes systematic discipline possible.
 
-What makes it systematic:
+## The Core Iron Condor Mechanics
 
-- Defined max loss is non-negotiable — preserves the property that makes discipline possible
-- Multi-underlying (NIFTY + SENSEX + BN running concurrently) = multiple lanes, adverse drift in one smoothed by others
-- Mid-cycle harvesting reduces capital at risk faster than waiting for expiry
-- Bracket orders do mechanical work once position is set
+```mermaid
+flowchart TD
+    OPEN["Open Iron Condor\nSell OTM call + put\nBuy further OTM call + put\nCollect net premium"] --> WATCH{Monitor position}
 
-The commodity extension: Long far-month gold/silver futures + short near-month OTM calls. Collects premium that offsets contango carry cost on far-month futures. Works specifically because of MCX's liquidity structure — OTM options are illiquid when you want to hold (doesn't matter, theta does the work), liquid when price moves toward strike (precisely when you need to exit). Seller in illiquid markets has the structural advantage.
+    WATCH -->|"One leg moves\nsafely OTM"| HARVEST["Harvest that leg early\nBuy back cheap, lock profit\nReduce capital at risk"]
+    HARVEST --> REMAIN["Leave opposite leg running\nOriginal max loss preserved"]
+    REMAIN --> PARTIAL{Partial profit\non remaining leg?}
+    PARTIAL -->|Yes| CLOSE["Close short strike\nLeave long wing open - free bet"]
+    CLOSE --> BRACKET["Set bracket order\nfor mean reversion exit"]
 
-The structural edges in commodity options:
+    WATCH -->|"Range-bound\nno action needed"| EXPIRY["Wait for expiry\nCollect full premium"]
 
-- IV consistently exceeds realised volatility on MCX — structural seller's edge
-- Liquidity asymmetry — illiquid OTM until it matters, liquid ATM/ITM when exit is needed
-- Monthly expiry creates clean roll discipline
-- Contango in gold/silver partially subsidised by collected call premium
+    HARVEST --> MAX["Max loss defined\nat all times"]
+    EXPIRY --> MAX
 
-Variants explored:
+    style OPEN fill:#dbeafe
+    style HARVEST fill:#dcfce7
+    style MAX fill:#dcfce7
+```
 
-- **Iron Butterfly:** higher max premium, tighter profit zone, better for IV spike environments
-- **Inverted IC (Short IC):** buys volatility events, defined risk preserved, runs as hedge alongside normal IC or pre-event positioning
-- **Short strangle:** excluded — breaks the defined max loss property, changes the fundamental nature
+## Multi-Underlying Structure
+
+Running NIFTY, SENSEX, and BANKNIFTY concurrently provides natural smoothing:
+
+```mermaid
+flowchart LR
+    subgraph Underlyings
+        N["NIFTY\nIC open"]
+        S["SENSEX\nIC open"]
+        B["BANKNIFTY\nIC open"]
+    end
+
+    N -->|"adverse move"| LOSS["One lane in trouble"]
+    S -->|"stable"| GAIN1["Collecting premium"]
+    B -->|"stable"| GAIN2["Collecting premium"]
+    GAIN1 -->|"smooths"| NET["Net P&L\nstabilised"]
+    GAIN2 --> NET
+    LOSS -->|"contained\nby defined max loss"| NET
+```
+
+## Commodity Extension: Gold/Silver Calendar
+
+```mermaid
+flowchart TD
+    POS["Long far-month\nGold futures"] -->|"exposed to\ncontango carry cost"| CARRY["Carry cost\nroll cost each month"]
+    SELL["Short near-month\nOTM calls on Gold"] -->|"collect"| PREM["Options premium"]
+    PREM -->|"offsets"| CARRY
+    NET2["Net: Long gold\nat reduced carry cost"]
+
+    subgraph MCX_EDGE["MCX Structural Edge"]
+        IL["OTM options illiquid\nwhen holding - theta does the work"]
+        LIQ["Liquid ATM/ITM\nwhen price approaches strike"]
+        IV["IV consistently exceeds\nrealised volatility - structural\nseller's edge"]
+    end
+
+    style NET2 fill:#dcfce7
+    style MCX_EDGE fill:#f3e8ff
+```
+
+## Strategy Variants
+
+| Variant | Use case | Max loss | Premium |
+|---|---|---|---|
+| Iron Condor (base) | Normal markets | Defined | Moderate |
+| Iron Butterfly | IV spike environments | Defined | High |
+| Inverted IC (Short IC) | Pre-event hedge | Defined | — (paid) |
+| Short Strangle | — | **Undefined** | High |
+
+Short strangle is **excluded**. Breaking the defined max loss property changes the fundamental nature of the strategy and the psychological contract that makes it sustainable.
+
+## The Gear-Shifting Model
+
+```mermaid
+flowchart LR
+    VIX{VIX level?} -->|"low, stable\n< 15"| ICB["ICB mode\nstandard condor width\nmoderate premium"]
+    VIX -->|"elevated\n15-25"| WIDE["Wider condors\nhigher premium\nmore cushion"]
+    VIX -->|"spike\n> 25"| IB["Iron Butterfly mode\nmaximise premium\naccept tighter profit zone"]
+    VIX -->|"event-driven spike"| IIC["Inverted IC\nbuy the move\nrun as hedge"]
+```
