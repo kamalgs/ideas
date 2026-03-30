@@ -168,3 +168,14 @@ time {
   font-size: 0.875rem;
   color: var(--color-muted);
 }
+
+footer {
+  max-width: var(--max-width);
+  margin: 4rem auto 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+  font-family: system-ui, sans-serif;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
