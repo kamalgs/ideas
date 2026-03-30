@@ -1,6 +1,50 @@
 <!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Biological Evolution as Frame for AI Model Generations — Ideas</title><style>*,*:before,*:after{box-sizing:border-box}:root{--max-width: 720px;--color-text: #1a1a1a;--color-muted: #666;--color-accent: #2563eb;--color-bg: #fff;--color-badge-bg: #f0f4ff;--color-badge-text: #2563eb;--color-border: #eee}body{font-family:Georgia,Times New Roman,serif;font-size:1.125rem;line-height:1.7;color:var(--color-text);background:var(--color-bg);margin:0;padding:0 1rem}a{color:var(--color-accent);text-decoration:none}a:hover{text-decoration:underline}header{max-width:var(--max-width);margin:2rem auto 3rem;display:flex;align-items:baseline;gap:2rem}header .site-title{margin:0;font-size:1.5rem;font-weight:700}header .site-title a{color:var(--color-text)}nav{display:flex;gap:1.25rem}nav a{color:var(--color-muted);font-size:1rem;font-family:system-ui,sans-serif;text-transform:capitalize}nav a:hover{color:var(--color-accent);text-decoration:none}main{max-width:var(--max-width);margin:0 auto 4rem}.entry-list{list-style:none;padding:0;margin:0}.entry-list li{display:flex;align-items:baseline;gap:.75rem;padding:.75rem 0;border-bottom:1px solid var(--color-border)}.entry-list li a{flex:1}.category-badge{font-family:system-ui,sans-serif;font-size:.75rem;padding:.15rem .5rem;border-radius:99px;background:var(--color-badge-bg);color:var(--color-badge-text);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}time{font-family:system-ui,sans-serif;font-size:.875rem;color:var(--color-muted);white-space:nowrap}.post-header{margin-bottom:2rem}.post-header h1{font-size:2rem;margin:0 0 .5rem}.post-meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;font-family:system-ui,sans-serif;font-size:.875rem;color:var(--color-muted)}.tags{display:flex;gap:.4rem;flex-wrap:wrap}.tag{background:#f5f5f5;padding:.1rem .5rem;border-radius:4px;font-size:.8rem}.rating{color:#f59e0b;letter-spacing:.1em}.prose{line-height:1.8}.prose h2{font-size:1.4rem;margin-top:2rem}.prose h3{font-size:1.2rem;margin-top:1.5rem}.prose p{margin:1rem 0}.prose blockquote{border-left:3px solid var(--color-border);margin:1.5rem 0;padding:.25rem 1.25rem;color:var(--color-muted);font-style:italic}.back-link{display:inline-block;margin-bottom:2rem;font-family:system-ui,sans-serif;font-size:.875rem;color:var(--color-muted)}footer{max-width:var(--max-width);margin:4rem auto 2rem;padding-top:1.5rem;border-top:1px solid var(--color-border);font-family:system-ui,sans-serif;font-size:.8rem;color:var(--color-muted);line-height:1.6}
 </style></head> <body> <header> <p class="site-title"><a href="/ideas/">Ideas</a></p> <nav> <a href="/ideas/books">books</a><a href="/ideas/movies">movies</a><a href="/ideas/thoughts">thoughts</a><a href="/ideas/research">research</a><a href="/ideas/product">product</a><a href="/ideas/investing">investing</a><a href="/ideas/trading">trading</a> </nav> </header> <main> <a class="back-link" href="/ideas/thoughts">← thoughts</a> <article> <div class="post-header"> <h1>Biological Evolution as Frame for AI Model Generations</h1> <div class="post-meta"> <span class="category-badge">thoughts</span> <time datetime="2026-02-01T00:00:00.000Z">1 February 2026</time>  <div class="tags"> <span class="tag">ai</span><span class="tag">llm</span><span class="tag">evolution</span><span class="tag">biology</span><span class="tag">training</span><span class="tag">transformers</span><span class="tag">research</span> </div> </div> </div> <div class="prose">  <p>The application of evolutionary biology concepts — mutation, selection pressure, fitness landscape, speciation, extinction — to successive generations of AI model training. Each training run as a generation. Corpus selection pressure as environmental pressure. Model families as species. Capability cliffs as extinction events. Convergent evolution explaining why different labs independently arrive at transformer architectures.</p>
-<p>The generative implication: just as biological evolution has no foresight (local fitness, not global optimum), gradient descent has no foresight either — both are hill-climbing algorithms that can get trapped. The analogy suggests looking at biological solutions to local optima problems (sexual recombination, punctuated equilibrium, genetic drift) as potential inspirations for training dynamics.</p>  </div> </article> </main> <footer>
+<h2 id="the-mapping">The Mapping</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#E1E4E8">    subgraph Biology["Biological Evolution"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        A[Individual organism]</span></span>
+<span class="line"><span style="color:#E1E4E8">        B[Mutation / genetic variation]</span></span>
+<span class="line"><span style="color:#E1E4E8">        C[Environmental selection pressure]</span></span>
+<span class="line"><span style="color:#E1E4E8">        D[Survival / reproduction]</span></span>
+<span class="line"><span style="color:#E1E4E8">        E[Next generation]</span></span>
+<span class="line"><span style="color:#E1E4E8">        F[Species — shared ancestry, compatible reproduction]</span></span>
+<span class="line"><span style="color:#E1E4E8">        G[Convergent evolution — sharks and dolphins]</span></span>
+<span class="line"><span style="color:#E1E4E8">        H[Extinction events — K-Pg boundary]</span></span>
+<span class="line"><span style="color:#E1E4E8">        I[Fitness landscape — local vs global optima]</span></span>
+<span class="line"><span style="color:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    subgraph AI["AI Model Training"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        J[Single training run / checkpoint]</span></span>
+<span class="line"><span style="color:#E1E4E8">        K[Hyperparameter variation / architecture search]</span></span>
+<span class="line"><span style="color:#E1E4E8">        L[Training data composition + objective function]</span></span>
+<span class="line"><span style="color:#E1E4E8">        M[Benchmark performance / deployment]</span></span>
+<span class="line"><span style="color:#E1E4E8">        N[Next model generation]</span></span>
+<span class="line"><span style="color:#E1E4E8">        O[Model family — GPT-4, GPT-4o, GPT-4 Turbo]</span></span>
+<span class="line"><span style="color:#E1E4E8">        P[Transformer convergence — all labs arrived here independently]</span></span>
+<span class="line"><span style="color:#E1E4E8">        Q[Capability cliff — GPT-2 → GPT-3 jump]</span></span>
+<span class="line"><span style="color:#E1E4E8">        R[Loss landscape — SGD local optima problem]</span></span>
+<span class="line"><span style="color:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    A &#x3C;--> J</span></span>
+<span class="line"><span style="color:#E1E4E8">    B &#x3C;--> K</span></span>
+<span class="line"><span style="color:#E1E4E8">    C &#x3C;--> L</span></span>
+<span class="line"><span style="color:#E1E4E8">    D &#x3C;--> M</span></span>
+<span class="line"><span style="color:#E1E4E8">    E &#x3C;--> N</span></span>
+<span class="line"><span style="color:#E1E4E8">    F &#x3C;--> O</span></span>
+<span class="line"><span style="color:#E1E4E8">    G &#x3C;--> P</span></span>
+<span class="line"><span style="color:#E1E4E8">    H &#x3C;--> Q</span></span>
+<span class="line"><span style="color:#E1E4E8">    I &#x3C;--> R</span></span>
+<span class="line"></span></code></pre>
+<h2 id="the-generative-implication">The Generative Implication</h2>
+<p>The most useful part of the analogy is not descriptive but prescriptive. Biological evolution has spent billions of years solving the local optima problem. The solutions it found:</p>
+<p><strong>Sexual recombination</strong>: Two parents combine chromosomes, creating offspring that jumbles genetic information. This breaks symmetry — the offspring isn’t just a slightly mutated version of either parent. In AI terms: combining representations from two differently-trained models might escape local minima that neither could escape alone.</p>
+<p><strong>Punctuated equilibrium</strong>: Evolution doesn’t proceed smoothly. Long periods of stasis punctuated by rapid change during environmental stress. The analogy: capability jumps in LLMs appear discontinuous, not gradual. This may not be surprising — it may be the expected dynamics of complex fitness landscapes.</p>
+<p><strong>Genetic drift</strong>: In small populations, random variation can fix neutral or even slightly deleterious traits just by chance. In AI: smaller compute budgets force architectural choices that wouldn’t be made at scale. Some of these might accidentally explore more useful regions of the architecture space.</p>
+<h2 id="limits-of-the-analogy">Limits of the Analogy</h2>
+<p>Evolution has no foresight. Neither does gradient descent. Both are hill-climbing algorithms that can get trapped. But evolution operates on populations over generations with genuine diversity. Training a model is optimizing a single trajectory.</p>
+<p>The analogy breaks down here: a species has millions of organisms exploring the fitness landscape in parallel. A training run is one organism running a deterministic (or near-deterministic) path. The diversity that makes evolution powerful has to be deliberately introduced through ensemble methods, architecture search, or model merging — it doesn’t emerge naturally from the training process.</p>
+<p>The frame is still useful for thinking about training dynamics and capability emergence, even where it doesn’t map precisely.</p>  </div> </article> </main> <footer>
 The ideas here are mine. The articulation, elaboration, and addition of facts and figures were
     developed in conversation with <a href="https://claude.ai">Claude</a> (Anthropic).
 </footer> </body></html>

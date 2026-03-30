@@ -1,7 +1,61 @@
 <!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Swarm of Specialist Models Over Monolithic Corpus — Ideas</title><style>*,*:before,*:after{box-sizing:border-box}:root{--max-width: 720px;--color-text: #1a1a1a;--color-muted: #666;--color-accent: #2563eb;--color-bg: #fff;--color-badge-bg: #f0f4ff;--color-badge-text: #2563eb;--color-border: #eee}body{font-family:Georgia,Times New Roman,serif;font-size:1.125rem;line-height:1.7;color:var(--color-text);background:var(--color-bg);margin:0;padding:0 1rem}a{color:var(--color-accent);text-decoration:none}a:hover{text-decoration:underline}header{max-width:var(--max-width);margin:2rem auto 3rem;display:flex;align-items:baseline;gap:2rem}header .site-title{margin:0;font-size:1.5rem;font-weight:700}header .site-title a{color:var(--color-text)}nav{display:flex;gap:1.25rem}nav a{color:var(--color-muted);font-size:1rem;font-family:system-ui,sans-serif;text-transform:capitalize}nav a:hover{color:var(--color-accent);text-decoration:none}main{max-width:var(--max-width);margin:0 auto 4rem}.entry-list{list-style:none;padding:0;margin:0}.entry-list li{display:flex;align-items:baseline;gap:.75rem;padding:.75rem 0;border-bottom:1px solid var(--color-border)}.entry-list li a{flex:1}.category-badge{font-family:system-ui,sans-serif;font-size:.75rem;padding:.15rem .5rem;border-radius:99px;background:var(--color-badge-bg);color:var(--color-badge-text);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}time{font-family:system-ui,sans-serif;font-size:.875rem;color:var(--color-muted);white-space:nowrap}.post-header{margin-bottom:2rem}.post-header h1{font-size:2rem;margin:0 0 .5rem}.post-meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;font-family:system-ui,sans-serif;font-size:.875rem;color:var(--color-muted)}.tags{display:flex;gap:.4rem;flex-wrap:wrap}.tag{background:#f5f5f5;padding:.1rem .5rem;border-radius:4px;font-size:.8rem}.rating{color:#f59e0b;letter-spacing:.1em}.prose{line-height:1.8}.prose h2{font-size:1.4rem;margin-top:2rem}.prose h3{font-size:1.2rem;margin-top:1.5rem}.prose p{margin:1rem 0}.prose blockquote{border-left:3px solid var(--color-border);margin:1.5rem 0;padding:.25rem 1.25rem;color:var(--color-muted);font-style:italic}.back-link{display:inline-block;margin-bottom:2rem;font-family:system-ui,sans-serif;font-size:.875rem;color:var(--color-muted)}footer{max-width:var(--max-width);margin:4rem auto 2rem;padding-top:1.5rem;border-top:1px solid var(--color-border);font-family:system-ui,sans-serif;font-size:.8rem;color:var(--color-muted);line-height:1.6}
 </style></head> <body> <header> <p class="site-title"><a href="/ideas/">Ideas</a></p> <nav> <a href="/ideas/books">books</a><a href="/ideas/movies">movies</a><a href="/ideas/thoughts">thoughts</a><a href="/ideas/research">research</a><a href="/ideas/product">product</a><a href="/ideas/investing">investing</a><a href="/ideas/trading">trading</a> </nav> </header> <main> <a class="back-link" href="/ideas/research">← research</a> <article> <div class="post-header"> <h1>Swarm of Specialist Models Over Monolithic Corpus</h1> <div class="post-meta"> <span class="category-badge">research</span> <time datetime="2026-03-01T00:00:00.000Z">1 March 2026</time>  <div class="tags"> <span class="tag">ai</span><span class="tag">llm</span><span class="tag">rag</span><span class="tag">fine-tuning</span><span class="tag">architecture</span><span class="tag">training-data</span> </div> </div> </div> <div class="prose">  <p>The “we need the whole internet to train” claim may be a myth waiting to be broken. Base model handles language competence and reasoning structure. Niche SFTs — or more precisely, RAG + tool calls + tight agentic loops — handle domain knowledge. No fine-tuning required for most specialist use cases.</p>
-<p>The Claude Code insight generalizes: effectiveness comes from tight context-action-observation loops feeding precise context, not from baking more data into weights. The knowledge retrieval problem and the reasoning problem got conflated because early RAG was crude.</p>
-<p>Implication: Indie creative community doesn’t need to train anything. They need a well-structured, access-controlled corpus and a retrieval layer. Commodity base model does the rest.</p>  </div> </article> </main> <footer>
+<h2 id="the-architecture-comparison">The Architecture Comparison</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#E1E4E8">    subgraph Monolithic["Monolithic Corpus Approach"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        A[Scrape entire internet]</span></span>
+<span class="line"><span style="color:#E1E4E8">        B[Train single massive model\non everything]</span></span>
+<span class="line"><span style="color:#E1E4E8">        C[Bake domain knowledge\ninto weights]</span></span>
+<span class="line"><span style="color:#E1E4E8">        D[Update requires full re-training\n$100M+ per run]</span></span>
+<span class="line"><span style="color:#E1E4E8">        E["'We need all the data'"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    subgraph Swarm["Swarm / Agentic Approach"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        F[Commodity base model\nfor reasoning + language]</span></span>
+<span class="line"><span style="color:#E1E4E8">        G[Structured domain corpus\naccess-controlled]</span></span>
+<span class="line"><span style="color:#E1E4E8">        H[RAG retrieval layer\npulls relevant context]</span></span>
+<span class="line"><span style="color:#E1E4E8">        I[Tool calls for live data]</span></span>
+<span class="line"><span style="color:#E1E4E8">        J[Tight context-action-observation loops]</span></span>
+<span class="line"><span style="color:#E1E4E8">        K[Update corpus, not weights]</span></span>
+<span class="line"><span style="color:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    subgraph Result["Outcome Comparison"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        L[Monolithic: High cost, stale knowledge,\ncopyright exposure]</span></span>
+<span class="line"><span style="color:#E1E4E8">        M[Swarm: Lower cost, fresh knowledge,\ncontrollable corpus]</span></span>
+<span class="line"><span style="color:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    Monolithic --> L</span></span>
+<span class="line"><span style="color:#E1E4E8">    Swarm --> M</span></span>
+<span class="line"></span></code></pre>
+<h2 id="the-claude-code-insight-that-generalises">The Claude Code Insight That Generalises</h2>
+<p>The effectiveness of Claude Code comes from tight context-action-observation loops feeding precise context — file contents, error messages, terminal output — not from baking more coding knowledge into weights. The model knows code because it was trained on code. But what makes it effective at your specific codebase is the retrieval + observation architecture.</p>
+<p>The knowledge retrieval problem and the reasoning problem got conflated because early RAG was crude. When RAG produced bad results, people concluded that domain knowledge needed to be in weights. The correct conclusion was that retrieval needed to be better. With modern retrieval (hybrid sparse/dense search, reranking, structured context), the knowledge can live outside the model and be kept fresh and access-controlled.</p>
+<h2 id="the-indie-creative-community-implication">The Indie Creative Community Implication</h2>
+<p>This is the most practically important implication. An indie film composer, a fiction community, a niche research group — none of them need to train anything. They need:</p>
+<ol>
+<li>A well-structured, access-controlled corpus of their work and domain knowledge</li>
+<li>A retrieval layer (embeddings + search)</li>
+<li>A commodity base model with a sensible system prompt</li>
+</ol>
+<p>The result: a model that knows their domain, respects their rights (because the corpus is theirs), and stays current as they add to it. The cost is a few hundred dollars a month, not $100M.</p>
+<p>The “training on your data” framing that AI companies sell is mostly unnecessary for most specialist use cases. It’s also a rights exposure risk — training embeds your data into shared weights. RAG keeps your data yours.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#E1E4E8">sequenceDiagram</span></span>
+<span class="line"><span style="color:#E1E4E8">    participant User</span></span>
+<span class="line"><span style="color:#E1E4E8">    participant Agent</span></span>
+<span class="line"><span style="color:#E1E4E8">    participant Retrieval</span></span>
+<span class="line"><span style="color:#E1E4E8">    participant Corpus</span></span>
+<span class="line"><span style="color:#E1E4E8">    participant LLM</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    User->>Agent: "Find examples of this chord progression in our catalog"</span></span>
+<span class="line"><span style="color:#E1E4E8">    Agent->>Retrieval: search(query, domain="music_catalog")</span></span>
+<span class="line"><span style="color:#E1E4E8">    Retrieval->>Corpus: embedding similarity + metadata filter</span></span>
+<span class="line"><span style="color:#E1E4E8">    Corpus-->>Retrieval: top-k relevant scores/sheets</span></span>
+<span class="line"><span style="color:#E1E4E8">    Retrieval-->>Agent: structured context</span></span>
+<span class="line"><span style="color:#E1E4E8">    Agent->>LLM: [system prompt] + [retrieved context] + [user query]</span></span>
+<span class="line"><span style="color:#E1E4E8">    LLM-->>Agent: grounded, domain-specific response</span></span>
+<span class="line"><span style="color:#E1E4E8">    Agent-->>User: answer with citations to corpus</span></span>
+<span class="line"></span></code></pre>
+<p>The rights remain with the corpus owner. The model does not accumulate their knowledge into weights shared with other users. The corpus can be updated without retraining. This is the architecture that makes sense for creative communities protecting their work.</p>  </div> </article> </main> <footer>
 The ideas here are mine. The articulation, elaboration, and addition of facts and figures were
     developed in conversation with <a href="https://claude.ai">Claude</a> (Anthropic).
 </footer> </body></html>

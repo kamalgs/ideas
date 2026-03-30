@@ -1,10 +1,54 @@
 <!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Underground / Arid-Region Datacenters vs Space — Grounded Alternatives — Ideas</title><style>*,*:before,*:after{box-sizing:border-box}:root{--max-width: 720px;--color-text: #1a1a1a;--color-muted: #666;--color-accent: #2563eb;--color-bg: #fff;--color-badge-bg: #f0f4ff;--color-badge-text: #2563eb;--color-border: #eee}body{font-family:Georgia,Times New Roman,serif;font-size:1.125rem;line-height:1.7;color:var(--color-text);background:var(--color-bg);margin:0;padding:0 1rem}a{color:var(--color-accent);text-decoration:none}a:hover{text-decoration:underline}header{max-width:var(--max-width);margin:2rem auto 3rem;display:flex;align-items:baseline;gap:2rem}header .site-title{margin:0;font-size:1.5rem;font-weight:700}header .site-title a{color:var(--color-text)}nav{display:flex;gap:1.25rem}nav a{color:var(--color-muted);font-size:1rem;font-family:system-ui,sans-serif;text-transform:capitalize}nav a:hover{color:var(--color-accent);text-decoration:none}main{max-width:var(--max-width);margin:0 auto 4rem}.entry-list{list-style:none;padding:0;margin:0}.entry-list li{display:flex;align-items:baseline;gap:.75rem;padding:.75rem 0;border-bottom:1px solid var(--color-border)}.entry-list li a{flex:1}.category-badge{font-family:system-ui,sans-serif;font-size:.75rem;padding:.15rem .5rem;border-radius:99px;background:var(--color-badge-bg);color:var(--color-badge-text);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}time{font-family:system-ui,sans-serif;font-size:.875rem;color:var(--color-muted);white-space:nowrap}.post-header{margin-bottom:2rem}.post-header h1{font-size:2rem;margin:0 0 .5rem}.post-meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;font-family:system-ui,sans-serif;font-size:.875rem;color:var(--color-muted)}.tags{display:flex;gap:.4rem;flex-wrap:wrap}.tag{background:#f5f5f5;padding:.1rem .5rem;border-radius:4px;font-size:.8rem}.rating{color:#f59e0b;letter-spacing:.1em}.prose{line-height:1.8}.prose h2{font-size:1.4rem;margin-top:2rem}.prose h3{font-size:1.2rem;margin-top:1.5rem}.prose p{margin:1rem 0}.prose blockquote{border-left:3px solid var(--color-border);margin:1.5rem 0;padding:.25rem 1.25rem;color:var(--color-muted);font-style:italic}.back-link{display:inline-block;margin-bottom:2rem;font-family:system-ui,sans-serif;font-size:.875rem;color:var(--color-muted)}footer{max-width:var(--max-width);margin:4rem auto 2rem;padding-top:1.5rem;border-top:1px solid var(--color-border);font-family:system-ui,sans-serif;font-size:.8rem;color:var(--color-muted);line-height:1.6}
 </style></head> <body> <header> <p class="site-title"><a href="/ideas/">Ideas</a></p> <nav> <a href="/ideas/books">books</a><a href="/ideas/movies">movies</a><a href="/ideas/thoughts">thoughts</a><a href="/ideas/research">research</a><a href="/ideas/product">product</a><a href="/ideas/investing">investing</a><a href="/ideas/trading">trading</a> </nav> </header> <main> <a class="back-link" href="/ideas/thoughts">← thoughts</a> <article> <div class="post-header"> <h1>Underground / Arid-Region Datacenters vs Space — Grounded Alternatives</h1> <div class="post-meta"> <span class="category-badge">thoughts</span> <time datetime="2026-03-01T00:00:00.000Z">1 March 2026</time>  <div class="tags"> <span class="tag">datacenters</span><span class="tag">infrastructure</span><span class="tag">india</span><span class="tag">cooling</span><span class="tag">energy</span><span class="tag">kgf</span><span class="tag">bangalore</span><span class="tag">space</span> </div> </div> </div> <div class="prose">  <p>Space and moon datacenters are a VC narrative, not an engineering proposition. Underground and arid-region alternatives are available today at a fraction of the cost and solve the same underlying problem — cheap cooling and cheap power.</p>
-<p>The underground case: Ground temperature at 10-15m depth stays stable at 18-25°C year-round in most of India vs 35-45°C ambient summers. PUE drops from 1.6-2.0 (surface India) to 1.1-1.3. 20-40% energy reduction purely from passive thermal management. CAPEX is 2-3x surface but payback is strong given India’s brutal cooling loads.</p>
-<p>The KGF insight — the most specific and interesting: Kolar Gold Fields has existing deep mine shafts, stable rock at 28-30°C at depth, abundant space, grid connectivity, and is ~60km from Bangalore’s hyperscale demand center. That’s hyperscale-competitive from passive thermal management alone, purpose-built for latency-tolerant AI training workloads where power cost and PUE dominate over latency.</p>
-<p>The arid/rain-shadow angle: North Karnataka, Bellary, Chitradurga — rain shadow regions with high solar irradiance, low land cost, low water table risk, and reasonable connectivity. Combined with immersion cooling (PUE 1.03-1.05, water-zero), the physics works. Connectivity gaps are the real constraint, not the climate.</p>
-<p>The space comparison is almost unfair: LEO latency 20-40ms unusable for transactional workloads; lunar round-trip 2.5 seconds minimum; radiation causes bit-flip errors orders of magnitude above ground rates; thermal management in vacuum requires radiative-only cooling which is inefficient; maintenance MTTR goes from hours to months; launch cost $1000-2000/kg even post-Starship. Underground DC: proven today. Space DC: 100-1000x cost, unsolved problems, decades away.</p>
-<p>The AC vs AI comparison: Global AC consumes ~2,000 TWh annually vs data centers ~415 TWh. AC is 5x the current problem and grows comparably through 2030. The AI datacenter energy panic is real but the scale framing is usually missing context — AC in a warming India is the larger energy story.</p>  </div> </article> </main> <footer>
+<h2 id="the-engineering-comparison">The Engineering Comparison</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#E1E4E8">    subgraph Underground["Underground Datacenter\n(KGF / India Deep Mine)"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        A["Ground temp: 18-25°C at 10-15m depth\n(vs 35-45°C ambient Indian summer)"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        B["PUE: 1.1-1.3\n(vs 1.6-2.0 surface India)"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        C["Energy reduction: 20-40% from passive thermal"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        D["CAPEX: 2-3x surface\nPayback: strong on India cooling loads"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        E["KGF specific: existing shafts, stable rock\n28-30°C at depth, 60km from Bangalore"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        F["Status: Proven today. Engineering solved."]</span></span>
+<span class="line"><span style="color:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    subgraph Arid["Arid / Rain-Shadow Region DC\n(North Karnataka, Bellary)"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        G["High solar irradiance\nLow land cost\nLow water table risk"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        H["Immersion cooling: PUE 1.03-1.05\nWater consumption: zero"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        I["Real constraint: connectivity, not climate"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        J["Status: Proven today. Connectivity solvable."]</span></span>
+<span class="line"><span style="color:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    subgraph Space["Space / Lunar Datacenter\n(VC Narrative)"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        K["LEO latency: 20-40ms — unusable for transactional"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        L["Lunar round-trip: 2.5 seconds minimum"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        M["Radiation: bit-flip errors orders of magnitude above ground"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        N["Thermal: radiative-only cooling, inefficient in vacuum"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        O["MTTR: hours on ground → months in orbit"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        P["Launch cost: $1000-2000/kg post-Starship"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        Q["Status: 100-1000x cost. Unsolved problems. Decades away."]</span></span>
+<span class="line"><span style="color:#E1E4E8">    end</span></span>
+<span class="line"></span></code></pre>
+<h2 id="the-kgf-opportunity--specifically">The KGF Opportunity — Specifically</h2>
+<p>Kolar Gold Fields is the most compelling specific case:</p>
+<ul>
+<li>Existing deep mine shafts — no excavation cost</li>
+<li>Stable granite rock at 28-30°C at depth — better than most underground alternatives globally</li>
+<li>~60km from Bangalore’s hyperscale demand center — fiber connectivity straightforward</li>
+<li>Abandoned infrastructure available at low cost — the mines are not actively used</li>
+<li>Purpose-built for latency-tolerant AI training workloads where power cost and PUE dominate</li>
+</ul>
+<p>The hyperscale math works: AI training doesn’t need 10ms latency. It needs cheap power and thermal stability. Underground KGF delivers both. The “why hasn’t this been done” question is not engineering — it’s land rights, environmental clearance, and the fact that hyperscale operators default to proven greenfield sites over novel infrastructure.</p>
+<h2 id="the-scale-context-thats-usually-missing">The Scale Context That’s Usually Missing</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#E1E4E8">xychart-beta</span></span>
+<span class="line"><span style="color:#E1E4E8">    title "Global Energy Consumption by Category (TWh/year)"</span></span>
+<span class="line"><span style="color:#E1E4E8">    x-axis ["Air Conditioning", "Industrial Motors", "Data Centers", "Lighting", "EV Charging"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    y-axis "TWh/year" 0 --> 2200</span></span>
+<span class="line"><span style="color:#E1E4E8">    bar [2000, 1800, 415, 1000, 140]</span></span>
+<span class="line"></span></code></pre>
+<p>Global AC: ~2,000 TWh/year
+All data centers: ~415 TWh/year</p>
+<p>AC is 5x the current data center problem and grows at comparable rates through 2030, especially in warming South Asia. The AI datacenter energy panic is real — but the scale framing is usually missing context. A warming India expanding residential and commercial AC is the larger energy story.</p>
+<p>This matters for the underground/arid datacenter case: the same passive cooling physics that makes underground DCs efficient could be applied to building design. The principle (use earth’s thermal mass) is more broadly applicable than just datacenters.</p>  </div> </article> </main> <footer>
 The ideas here are mine. The articulation, elaboration, and addition of facts and figures were
     developed in conversation with <a href="https://claude.ai">Claude</a> (Anthropic).
 </footer> </body></html>
