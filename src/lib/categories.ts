@@ -1,2 +1,2 @@
-export const CATEGORIES = ['books', 'movies', 'thoughts'] as const;
+export const CATEGORIES = ['books', 'movies', 'thoughts', 'research', 'product'] as const;
 export type Category = (typeof CATEGORIES)[number];

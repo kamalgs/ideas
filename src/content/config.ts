@@ -11,4 +11,6 @@ export const collections = {
   books: defineCollection({ type: 'content', schema: postSchema }),
   movies: defineCollection({ type: 'content', schema: postSchema }),
   thoughts: defineCollection({ type: 'content', schema: postSchema }),
+  research: defineCollection({ type: 'content', schema: postSchema }),
+  product: defineCollection({ type: 'content', schema: postSchema }),
 };

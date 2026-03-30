@@ -1,5 +1,5 @@
 ---
-import type { Category } from '../lib/categories';
+import { CATEGORIES, type Category } from '../lib/categories';
 import '../styles/global.css';
 
 interface Props {
@@ -29,9 +29,7 @@ const dateStr = date.toLocaleDateString('en-GB', {
   <header>
     <p class="site-title"><a href="/">Ideas</a></p>
     <nav>
-      <a href="/books">books</a>
-      <a href="/movies">movies</a>
-      <a href="/thoughts">thoughts</a>
+      {CATEGORIES.map(cat => <a href={`/${cat}`}>{cat}</a>)}
     </nav>
   </header>
   <main>
