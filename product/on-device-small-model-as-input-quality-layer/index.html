@@ -1,17 +1,90 @@
 <!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>On-Device Small Model as Input Quality Layer — Ideas</title><style>*,*:before,*:after{box-sizing:border-box}:root{--max-width: 720px;--color-text: #1a1a1a;--color-muted: #666;--color-accent: #2563eb;--color-bg: #fff;--color-badge-bg: #f0f4ff;--color-badge-text: #2563eb;--color-border: #eee}body{font-family:Georgia,Times New Roman,serif;font-size:1.125rem;line-height:1.7;color:var(--color-text);background:var(--color-bg);margin:0;padding:0 1rem}a{color:var(--color-accent);text-decoration:none}a:hover{text-decoration:underline}header{max-width:var(--max-width);margin:2rem auto 3rem;display:flex;align-items:baseline;gap:2rem}header .site-title{margin:0;font-size:1.5rem;font-weight:700}header .site-title a{color:var(--color-text)}nav{display:flex;gap:1.25rem}nav a{color:var(--color-muted);font-size:1rem;font-family:system-ui,sans-serif;text-transform:capitalize}nav a:hover{color:var(--color-accent);text-decoration:none}main{max-width:var(--max-width);margin:0 auto 4rem}.entry-list{list-style:none;padding:0;margin:0}.entry-list li{display:flex;align-items:baseline;gap:.75rem;padding:.75rem 0;border-bottom:1px solid var(--color-border)}.entry-list li a{flex:1}.category-badge{font-family:system-ui,sans-serif;font-size:.75rem;padding:.15rem .5rem;border-radius:99px;background:var(--color-badge-bg);color:var(--color-badge-text);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}time{font-family:system-ui,sans-serif;font-size:.875rem;color:var(--color-muted);white-space:nowrap}.post-header{margin-bottom:2rem}.post-header h1{font-size:2rem;margin:0 0 .5rem}.post-meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;font-family:system-ui,sans-serif;font-size:.875rem;color:var(--color-muted)}.tags{display:flex;gap:.4rem;flex-wrap:wrap}.tag{background:#f5f5f5;padding:.1rem .5rem;border-radius:4px;font-size:.8rem}.rating{color:#f59e0b;letter-spacing:.1em}.prose{line-height:1.8}.prose h2{font-size:1.4rem;margin-top:2rem}.prose h3{font-size:1.2rem;margin-top:1.5rem}.prose p{margin:1rem 0}.prose blockquote{border-left:3px solid var(--color-border);margin:1.5rem 0;padding:.25rem 1.25rem;color:var(--color-muted);font-style:italic}.back-link{display:inline-block;margin-bottom:2rem;font-family:system-ui,sans-serif;font-size:.875rem;color:var(--color-muted)}footer{max-width:var(--max-width);margin:4rem auto 2rem;padding-top:1.5rem;border-top:1px solid var(--color-border);font-family:system-ui,sans-serif;font-size:.8rem;color:var(--color-muted);line-height:1.6}
-</style></head> <body> <header> <p class="site-title"><a href="/ideas/">Ideas</a></p> <nav> <a href="/ideas/books">books</a><a href="/ideas/movies">movies</a><a href="/ideas/thoughts">thoughts</a><a href="/ideas/research">research</a><a href="/ideas/product">product</a><a href="/ideas/investing">investing</a><a href="/ideas/trading">trading</a> </nav> </header> <main> <a class="back-link" href="/ideas/product">← product</a> <article> <div class="post-header"> <h1>On-Device Small Model as Input Quality Layer</h1> <div class="post-meta"> <span class="category-badge">product</span> <time datetime="2026-02-01T00:00:00.000Z">1 February 2026</time>  <div class="tags"> <span class="tag">ai</span><span class="tag">mobile</span><span class="tag">inference</span><span class="tag">hinglish</span><span class="tag">india</span><span class="tag">nlp</span><span class="tag">speculative-decoding</span><span class="tag">edge-computing</span> </div> </div> </div> <div class="prose">  <p>The framing: mobile inference isn’t primarily about running the full model on device — it’s about using a small on-device model to improve the quality of what gets sent to the cloud model.</p>
-<p>The input quality problem: Most real-world queries arrive with typos, mixed scripts, transliteration ambiguity (Hinglish typed in Roman script, regional language words spelled phonetically), incomplete sentences, unclear intent. The cloud model receives this and produces a degraded response. The garbage-in problem is underappreciated relative to model capability.</p>
-<p>The on-device preprocessing layer:</p>
-<ul>
-<li>Typo correction before the query leaves the device</li>
-<li>Transliteration normalization — “mujhe batao” → proper Devanagari, or consistent romanization</li>
-<li>Query expansion / intent clarification for ambiguous short queries</li>
-<li>Context injection from local state (previous queries in session, user preferences)</li>
-</ul>
-<p>A 1-3B model on device can do all of this well. It doesn’t need to answer the question — just clean and enrich the input. The cloud model then operates on a high-quality, unambiguous query.</p>
-<p>The speculative decoding angle: Extend this to the response side. Small on-device model generates a speculative draft response for simple queries. Cloud model verifies or corrects. For queries the small model can handle confidently, no cloud call needed. For complex queries, the draft gives the cloud model a starting point it can accept or reject token by token.</p>
-<p>The incremental protocol implication: Rather than a binary on-device vs cloud routing decision, a streaming protocol where the device starts generating incrementally, the cloud monitors confidence, and takes over when complexity exceeds the local model’s capability. Seam is invisible to the user — response streams continuously.</p>
-<p>India-specific relevance: Hinglish, code-mixed queries, regional language transliteration are exactly where global cloud models fail and where a small, locally fine-tuned preprocessing model adds disproportionate value. The problem is more acute in India than anywhere else.</p>  </div> </article> </main> <footer>
+</style></head> <body> <header> <p class="site-title"><a href="/ideas/">Ideas</a></p> <nav> <a href="/ideas/books">books</a><a href="/ideas/movies">movies</a><a href="/ideas/thoughts">thoughts</a><a href="/ideas/research">research</a><a href="/ideas/product">product</a><a href="/ideas/investing">investing</a><a href="/ideas/trading">trading</a> </nav> </header> <main> <a class="back-link" href="/ideas/product">← product</a> <article> <div class="post-header"> <h1>On-Device Small Model as Input Quality Layer</h1> <div class="post-meta"> <span class="category-badge">product</span> <time datetime="2026-02-01T00:00:00.000Z">1 February 2026</time>  <div class="tags"> <span class="tag">ai</span><span class="tag">mobile</span><span class="tag">inference</span><span class="tag">hinglish</span><span class="tag">india</span><span class="tag">nlp</span><span class="tag">speculative-decoding</span><span class="tag">edge-computing</span> </div> </div> </div> <div class="prose">  <p>Mobile inference isn’t primarily about running the full model on device — it’s about using a small on-device model to improve the quality of what gets sent to the cloud model.</p>
+<h2 id="the-input-quality-problem">The Input Quality Problem</h2>
+<p>Most real-world queries arrive degraded:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#E1E4E8">flowchart LR</span></span>
+<span class="line"><span style="color:#E1E4E8">    U["User intent\n(clear in head)"] -->|typed on mobile| Q["mujhe ye batao\nik achha brker\nkaun sa h??"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    Q -->|cloud model receives| R["Degraded response\nbecause query was garbage"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    style Q fill:#fee2e2</span></span>
+<span class="line"><span style="color:#E1E4E8">    style R fill:#fee2e2</span></span>
+<span class="line"></span></code></pre>
+<p>The garbage-in problem is underappreciated relative to model capability debates. A GPT-4-class model receiving a malformed query produces a GPT-4-class answer to the wrong question.</p>
+<h2 id="the-preprocessing-pipeline">The Preprocessing Pipeline</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#E1E4E8">    UQ[Raw User Query\ntypos, Hinglish, ambiguous] --> OD[On-Device 1-3B Model]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    subgraph OD_OPS["On-Device Operations"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        TC[Typo correction]</span></span>
+<span class="line"><span style="color:#E1E4E8">        TN[Transliteration normalisation]</span></span>
+<span class="line"><span style="color:#E1E4E8">        QE[Query expansion\nambiguous intent clarified]</span></span>
+<span class="line"><span style="color:#E1E4E8">        CI[Context injection\nsession history + preferences]</span></span>
+<span class="line"><span style="color:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    OD --> TC --> TN --> QE --> CI</span></span>
+<span class="line"><span style="color:#E1E4E8">    CI --> CLOUD[Cloud Model\nGPT-4 / Claude / Gemini]</span></span>
+<span class="line"><span style="color:#E1E4E8">    CLOUD --> RESP[High-quality response\nto a well-formed query]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    OD -.->|simple queries\nhigh confidence| RESP</span></span>
+<span class="line"><span style="color:#E1E4E8">    style UQ fill:#fee2e2</span></span>
+<span class="line"><span style="color:#E1E4E8">    style RESP fill:#dcfce7</span></span>
+<span class="line"></span></code></pre>
+<p>A 1-3B model on device can do all of this well. It doesn’t need to <em>answer</em> the question — just clean and enrich the input.</p>
+<h2 id="speculative-decoding-extension">Speculative Decoding Extension</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#E1E4E8">sequenceDiagram</span></span>
+<span class="line"><span style="color:#E1E4E8">    participant Device as On-Device Model</span></span>
+<span class="line"><span style="color:#E1E4E8">    participant Cloud as Cloud Model</span></span>
+<span class="line"><span style="color:#E1E4E8">    participant User</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    User->>Device: Query</span></span>
+<span class="line"><span style="color:#E1E4E8">    Device->>Device: Generate speculative draft response</span></span>
+<span class="line"><span style="color:#E1E4E8">    Device->>Cloud: Send cleaned query + draft tokens</span></span>
+<span class="line"><span style="color:#E1E4E8">    Cloud->>Cloud: Verify draft token by token</span></span>
+<span class="line"><span style="color:#E1E4E8">    alt Draft accepted (simple query)</span></span>
+<span class="line"><span style="color:#E1E4E8">        Cloud-->>User: Confirmed response (fast, cheap)</span></span>
+<span class="line"><span style="color:#E1E4E8">    else Draft rejected (complex query)</span></span>
+<span class="line"><span style="color:#E1E4E8">        Cloud-->>User: Cloud-generated response</span></span>
+<span class="line"><span style="color:#E1E4E8">    end</span></span>
+<span class="line"></span></code></pre>
+<p>For queries the small model can handle confidently, no cloud call needed. For complex queries, the draft gives the cloud model a starting point — accept or correct token by token.</p>
+<h2 id="the-india-specific-case">The India-Specific Case</h2>
+<p>India is where this problem is most acute and the solution most valuable:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Problem</th><th>Scale</th></tr></thead><tbody><tr><td>Hinglish queries (Roman script Hindi)</td><td>~500M+ users type this way</td></tr><tr><td>Code-mixed regional language queries</td><td>22 official languages, infinite combinations</td></tr><tr><td>Transliteration ambiguity</td><td>”pyaar”, “pyar”, “piyar” — same word</td></tr><tr><td>Low-end device constraints</td><td>Median Android RAM: 3-4GB</td></tr></tbody></table>
+<p>Global cloud models are optimised for English. A small on-device model fine-tuned on Indian language patterns adds disproportionate value precisely where global models fail.</p>
+<h2 id="the-incremental-protocol">The Incremental Protocol</h2>
+<p>Rather than binary on-device vs cloud routing — a streaming protocol:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#E1E4E8">flowchart LR</span></span>
+<span class="line"><span style="color:#E1E4E8">    D[Device starts\ngenerating] --> M{Confidence\nthreshold?}</span></span>
+<span class="line"><span style="color:#E1E4E8">    M -->|high| D</span></span>
+<span class="line"><span style="color:#E1E4E8">    M -->|dropping| C[Cloud takes over\nseamlessly]</span></span>
+<span class="line"><span style="color:#E1E4E8">    C --> R[Response streams\ncontinuously to user]</span></span>
+<span class="line"><span style="color:#E1E4E8">    style R fill:#dcfce7</span></span>
+<span class="line"></span></code></pre>
+<p>The seam is invisible to the user. Response streams continuously regardless of which model is generating at any moment.</p>  </div> </article> </main> <footer>
 The ideas here are mine. The articulation, elaboration, and addition of facts and figures were
     developed in conversation with <a href="https://claude.ai">Claude</a> (Anthropic).
 </footer> </body></html>

@@ -1,10 +1,94 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>e₹ as Programmable Corpus Account for Social Micro-Lending — Ideas</title><style>*,*:before,*:after{box-sizing:border-box}:root{--max-width: 720px;--color-text: #1a1a1a;--color-muted: #666;--color-accent: #2563eb;--color-bg: #fff;--color-badge-bg: #f0f4ff;--color-badge-text: #2563eb;--color-border: #eee}body{font-family:Georgia,Times New Roman,serif;font-size:1.125rem;line-height:1.7;color:var(--color-text);background:var(--color-bg);margin:0;padding:0 1rem}a{color:var(--color-accent);text-decoration:none}a:hover{text-decoration:underline}header{max-width:var(--max-width);margin:2rem auto 3rem;display:flex;align-items:baseline;gap:2rem}header .site-title{margin:0;font-size:1.5rem;font-weight:700}header .site-title a{color:var(--color-text)}nav{display:flex;gap:1.25rem}nav a{color:var(--color-muted);font-size:1rem;font-family:system-ui,sans-serif;text-transform:capitalize}nav a:hover{color:var(--color-accent);text-decoration:none}main{max-width:var(--max-width);margin:0 auto 4rem}.entry-list{list-style:none;padding:0;margin:0}.entry-list li{display:flex;align-items:baseline;gap:.75rem;padding:.75rem 0;border-bottom:1px solid var(--color-border)}.entry-list li a{flex:1}.category-badge{font-family:system-ui,sans-serif;font-size:.75rem;padding:.15rem .5rem;border-radius:99px;background:var(--color-badge-bg);color:var(--color-badge-text);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}time{font-family:system-ui,sans-serif;font-size:.875rem;color:var(--color-muted);white-space:nowrap}.post-header{margin-bottom:2rem}.post-header h1{font-size:2rem;margin:0 0 .5rem}.post-meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;font-family:system-ui,sans-serif;font-size:.875rem;color:var(--color-muted)}.tags{display:flex;gap:.4rem;flex-wrap:wrap}.tag{background:#f5f5f5;padding:.1rem .5rem;border-radius:4px;font-size:.8rem}.rating{color:#f59e0b;letter-spacing:.1em}.prose{line-height:1.8}.prose h2{font-size:1.4rem;margin-top:2rem}.prose h3{font-size:1.2rem;margin-top:1.5rem}.prose p{margin:1rem 0}.prose blockquote{border-left:3px solid var(--color-border);margin:1.5rem 0;padding:.25rem 1.25rem;color:var(--color-muted);font-style:italic}.back-link{display:inline-block;margin-bottom:2rem;font-family:system-ui,sans-serif;font-size:.875rem;color:var(--color-muted)}footer{max-width:var(--max-width);margin:4rem auto 2rem;padding-top:1.5rem;border-top:1px solid var(--color-border);font-family:system-ui,sans-serif;font-size:.8rem;color:var(--color-muted);line-height:1.6}
-</style></head> <body> <header> <p class="site-title"><a href="/ideas/">Ideas</a></p> <nav> <a href="/ideas/books">books</a><a href="/ideas/movies">movies</a><a href="/ideas/thoughts">thoughts</a><a href="/ideas/research">research</a><a href="/ideas/product">product</a><a href="/ideas/investing">investing</a><a href="/ideas/trading">trading</a> </nav> </header> <main> <a class="back-link" href="/ideas/product">← product</a> <article> <div class="post-header"> <h1>e₹ as Programmable Corpus Account for Social Micro-Lending</h1> <div class="post-meta"> <span class="category-badge">product</span> <time datetime="2026-03-01T00:00:00.000Z">1 March 2026</time>  <div class="tags"> <span class="tag">cbdc</span><span class="tag">e-rupee</span><span class="tag">fintech</span><span class="tag">india</span><span class="tag">rang-de</span><span class="tag">microfinance</span><span class="tag">upi</span><span class="tag">p2p-lending</span> </div> </div> </div> <div class="prose">  <p>Rang De’s growth bottleneck isn’t regulatory — it’s conversion. HNI lenders receive fractional repayments (₹83 hits their savings account 40 times a month mixed with everything else) and the mental friction kills reinvestment.</p>
-<p>The insight: e₹ special purpose wallet as a dedicated, ringfenced corpus account. Repayments land there automatically, compound via reinvestment mandate, never touch the lender’s bank account unless explicitly withdrawn. The corpus lives separately — can’t accidentally spend it on Swiggy.</p>
-<p>The specific composition that’s novel: Rang De as NBFC-P2P qualifies for “Sponsor” status in ICICI’s CBDC architecture — meaning Rang De could issue programmable e₹ to lender wallets restricted to flow back only to Rang De’s VPA. Auto-reinvestment mandate built into the token itself, not a separate standing instruction.</p>
-<p>Infrastructure already closer than expected: UPI ↔ e₹ interoperability live today. Special purpose wallets in ICICI’s stack. MobiKwik/CRED established non-bank CBDC wallet precedent via Yes Bank as sponsor.</p>
-<p>Two specific asks needed: Rang De institutional e₹ wallet + Sponsor status from their bank partner; RBI opening third-party mandate APIs (business-to-CBDC push) equivalent to UPI AutoPay for CBDC.</p>
-<p>Why it’s non-trivial: Requires simultaneously knowing Rang De’s business model, NBFC-P2P regulatory position, e₹ programmability architecture, and the ICICI Sponsor framework — none of which individually suggests the others.</p>  </div> </article> </main> <footer>
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>e-Rupee as Programmable Corpus Account for Social Micro-Lending — Ideas</title><style>*,*:before,*:after{box-sizing:border-box}:root{--max-width: 720px;--color-text: #1a1a1a;--color-muted: #666;--color-accent: #2563eb;--color-bg: #fff;--color-badge-bg: #f0f4ff;--color-badge-text: #2563eb;--color-border: #eee}body{font-family:Georgia,Times New Roman,serif;font-size:1.125rem;line-height:1.7;color:var(--color-text);background:var(--color-bg);margin:0;padding:0 1rem}a{color:var(--color-accent);text-decoration:none}a:hover{text-decoration:underline}header{max-width:var(--max-width);margin:2rem auto 3rem;display:flex;align-items:baseline;gap:2rem}header .site-title{margin:0;font-size:1.5rem;font-weight:700}header .site-title a{color:var(--color-text)}nav{display:flex;gap:1.25rem}nav a{color:var(--color-muted);font-size:1rem;font-family:system-ui,sans-serif;text-transform:capitalize}nav a:hover{color:var(--color-accent);text-decoration:none}main{max-width:var(--max-width);margin:0 auto 4rem}.entry-list{list-style:none;padding:0;margin:0}.entry-list li{display:flex;align-items:baseline;gap:.75rem;padding:.75rem 0;border-bottom:1px solid var(--color-border)}.entry-list li a{flex:1}.category-badge{font-family:system-ui,sans-serif;font-size:.75rem;padding:.15rem .5rem;border-radius:99px;background:var(--color-badge-bg);color:var(--color-badge-text);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}time{font-family:system-ui,sans-serif;font-size:.875rem;color:var(--color-muted);white-space:nowrap}.post-header{margin-bottom:2rem}.post-header h1{font-size:2rem;margin:0 0 .5rem}.post-meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;font-family:system-ui,sans-serif;font-size:.875rem;color:var(--color-muted)}.tags{display:flex;gap:.4rem;flex-wrap:wrap}.tag{background:#f5f5f5;padding:.1rem .5rem;border-radius:4px;font-size:.8rem}.rating{color:#f59e0b;letter-spacing:.1em}.prose{line-height:1.8}.prose h2{font-size:1.4rem;margin-top:2rem}.prose h3{font-size:1.2rem;margin-top:1.5rem}.prose p{margin:1rem 0}.prose blockquote{border-left:3px solid var(--color-border);margin:1.5rem 0;padding:.25rem 1.25rem;color:var(--color-muted);font-style:italic}.back-link{display:inline-block;margin-bottom:2rem;font-family:system-ui,sans-serif;font-size:.875rem;color:var(--color-muted)}footer{max-width:var(--max-width);margin:4rem auto 2rem;padding-top:1.5rem;border-top:1px solid var(--color-border);font-family:system-ui,sans-serif;font-size:.8rem;color:var(--color-muted);line-height:1.6}
+</style></head> <body> <header> <p class="site-title"><a href="/ideas/">Ideas</a></p> <nav> <a href="/ideas/books">books</a><a href="/ideas/movies">movies</a><a href="/ideas/thoughts">thoughts</a><a href="/ideas/research">research</a><a href="/ideas/product">product</a><a href="/ideas/investing">investing</a><a href="/ideas/trading">trading</a> </nav> </header> <main> <a class="back-link" href="/ideas/product">← product</a> <article> <div class="post-header"> <h1>e-Rupee as Programmable Corpus Account for Social Micro-Lending</h1> <div class="post-meta"> <span class="category-badge">product</span> <time datetime="2026-03-01T00:00:00.000Z">1 March 2026</time>  <div class="tags"> <span class="tag">cbdc</span><span class="tag">e-rupee</span><span class="tag">fintech</span><span class="tag">india</span><span class="tag">rang-de</span><span class="tag">microfinance</span><span class="tag">upi</span><span class="tag">p2p-lending</span> </div> </div> </div> <div class="prose">  <p>Rang De’s growth bottleneck isn’t regulatory — it’s conversion. The problem is a UX and mental accounting problem that the e-rupee CBDC architecture can solve structurally.</p>
+<h2 id="the-current-problem">The Current Problem</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#E1E4E8">    LEND["HNI lends 10,000\nto 40 borrowers via Rang De"] --> REPAY["40 borrowers repay\nmonthly instalments"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    REPAY --> BANK["83 hits lender's\nmain savings account\n40 times a month"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    BANK --> NOISE["Lost in\ntransaction noise\nwith Swiggy + Amazon\n+ EMIs + everything else"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    NOISE --> FORGET["Lender forgets\nto reinvest"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    FORGET --> CORPUS["Corpus shrinks\nRang De's growth stalls"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    style NOISE fill:#fee2e2</span></span>
+<span class="line"><span style="color:#E1E4E8">    style FORGET fill:#fee2e2</span></span>
+<span class="line"><span style="color:#E1E4E8">    style CORPUS fill:#fee2e2</span></span>
+<span class="line"></span></code></pre>
+<p>The mental friction of fractional repayments landing in a general account kills reinvestment. This is not a regulatory problem or a credit problem — it’s a wallet architecture problem.</p>
+<h2 id="the-proposed-solution">The Proposed Solution</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#E1E4E8">flowchart TD</span></span>
+<span class="line"><span style="color:#E1E4E8">    LEND2["HNI lends 10,000\nto Rang De"] --> WALLET["Rang De-issued\ne-rupee special purpose wallet\nringfenced"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    REPAY2["Borrower repayments"] --> WALLET</span></span>
+<span class="line"><span style="color:#E1E4E8">    WALLET -->|"auto-reinvestment\nmandate in token"| LEND2</span></span>
+<span class="line"><span style="color:#E1E4E8">    WALLET -->|"explicit withdrawal\nonly"| BANK2["Lender's bank account"]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    subgraph TOKEN_PROPS["e-rupee Token Properties"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        RESTRICT["Restricted to flow\nback to Rang De VPA"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        AUTO["Auto-reinvestment\nmandate in token itself"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        SEPARATE["Never touches\nmain bank account"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    style WALLET fill:#dcfce7</span></span>
+<span class="line"><span style="color:#E1E4E8">    style TOKEN_PROPS fill:#dbeafe</span></span>
+<span class="line"></span></code></pre>
+<p>The corpus lives separately — visible, growing, not accidentally spent on Swiggy.</p>
+<h2 id="infrastructure-that-already-exists">Infrastructure That Already Exists</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#E1E4E8">flowchart LR</span></span>
+<span class="line"><span style="color:#E1E4E8">    subgraph EXISTS["Already Live Today"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        UPI["UPI and e-rupee\ninteroperability"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        SPW["Special purpose wallets\nin ICICI's CBDC stack"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        PREC["MobiKwik/CRED precedent:\nnon-bank CBDC wallets\nvia Yes Bank sponsor"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    subgraph NEEDED["Two Asks from RBI/Banks"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        A1["Rang De: institutional\ne-rupee wallet + Sponsor status\nfrom bank partner"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        A2["RBI: third-party mandate\nAPIs for CBDC\nequivalent to UPI AutoPay for e-rupee"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    end</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    EXISTS --> IMPL["Implementable\nwithout new legislation"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    NEEDED --> IMPL</span></span>
+<span class="line"><span style="color:#E1E4E8">    style IMPL fill:#dcfce7</span></span>
+<span class="line"></span></code></pre>
+<h2 id="why-this-is-non-trivial-to-see">Why This Is Non-Trivial to See</h2>
+<p>This insight requires simultaneously knowing:</p>
+<ol>
+<li><strong>Rang De’s business model</strong> — NBFC-P2P, conversion bottleneck</li>
+<li><strong>NBFC-P2P regulatory position</strong> — Sponsor status eligibility</li>
+<li><strong>e-rupee programmability architecture</strong> — token-level restrictions</li>
+<li><strong>ICICI Sponsor framework</strong> — who can issue constrained wallets</li>
+</ol>
+<p>None of these individually suggests the others. The solution lives at their intersection.</p>
+<h2 id="the-compounding-effect">The Compounding Effect</h2>
+<p>A lender who reinvests automatically compounds their social impact:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Year</th><th>Manual reinvestment</th><th>Auto-reinvesting corpus</th></tr></thead><tbody><tr><td>1</td><td>10,000</td><td>10,000</td></tr><tr><td>3</td><td>8,000 (leakage)</td><td>13,310</td></tr><tr><td>5</td><td>5,000 (forgotten)</td><td>16,105</td></tr><tr><td>10</td><td>0 (churned out)</td><td>25,937</td></tr></tbody></table>
+<p>The platform’s impact scales not by acquiring new lenders but by retaining existing corpus.</p>  </div> </article> </main> <footer>
 The ideas here are mine. The articulation, elaboration, and addition of facts and figures were
     developed in conversation with <a href="https://claude.ai">Claude</a> (Anthropic).
 </footer> </body></html>
