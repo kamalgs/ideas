@@ -1,5 +1,6 @@
 ---
 import { CATEGORIES, type Category } from '../lib/categories';
+import { url } from '../lib/url';
 import '../styles/global.css';
 
 interface Props {
@@ -27,13 +28,13 @@ const dateStr = date.toLocaleDateString('en-GB', {
 </head>
 <body>
   <header>
-    <p class="site-title"><a href="/">Ideas</a></p>
+    <p class="site-title"><a href={url('/')}>Ideas</a></p>
     <nav>
-      {CATEGORIES.map(cat => <a href={`/${cat}`}>{cat}</a>)}
+      {CATEGORIES.map(cat => <a href={url(`/${cat}`)}>{cat}</a>)}
     </nav>
   </header>
   <main>
-    <a class="back-link" href={`/${category}`}>← {category}</a>
+    <a class="back-link" href={url(`/${category}`)}>← {category}</a>
     <article>
       <div class="post-header">
         <h1>{title}</h1>

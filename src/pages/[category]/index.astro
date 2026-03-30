@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import { CATEGORIES } from '../../lib/categories';
 import type { Category } from '../../lib/categories';
+import { url } from '../../lib/url';
 import '../../styles/global.css';
 
 export async function getStaticPaths() {
@@ -22,9 +23,9 @@ const sorted = [...entries].sort(
 </head>
 <body>
   <header>
-    <p class="site-title"><a href="/">Ideas</a></p>
+    <p class="site-title"><a href={url('/')}>Ideas</a></p>
     <nav>
-      {CATEGORIES.map(cat => <a href={`/${cat}`}>{cat}</a>)}
+      {CATEGORIES.map(cat => <a href={url(`/${cat}`)}>{cat}</a>)}
     </nav>
   </header>
   <main>
@@ -33,7 +34,7 @@ const sorted = [...entries].sort(
     <ul class="entry-list">
       {sorted.map(entry => (
         <li>
-          <a href={`/${category}/${entry.slug}`}>{entry.data.title}</a>
+          <a href={url(`/${category}/${entry.slug}`)}>{entry.data.title}</a>
           <time datetime={entry.data.date.toISOString()}>
             {entry.data.date.toLocaleDateString('en-GB', {
               year: 'numeric', month: 'short', day: 'numeric'
